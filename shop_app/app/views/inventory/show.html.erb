@@ -1,0 +1,10 @@
+<h1><%= @user.user_name %>'s Inventory</h1>
+<ul>
+  <% if @items.any? %>
+    <% @items.each do |item| %>
+      <li><%= item.name %> - <%= item.price %></li>
+    <% end %>
+  <% else %>
+    <li>No items found</li>
+  <% end %>
+</ul>

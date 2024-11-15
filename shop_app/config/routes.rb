@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'inventory/:user_id', to: 'inventory#show', as: 'inventory'
   resources :items
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
