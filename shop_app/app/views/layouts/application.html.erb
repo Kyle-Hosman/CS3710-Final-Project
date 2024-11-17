@@ -21,10 +21,7 @@
     <nav>
       <%= link_to "Home", root_path %> |
       <%= link_to "All Users", users_path %> |
-      <%= link_to "All Items", items_path %> |
-      <% if @user %>
-        <%= link_to "Inventory", inventory_path(@user) %>
-      <% end %>
+      <%= link_to "All Items", items_path %>
     </nav>
     <%= yield %>
   </body>
