@@ -18,6 +18,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @user = @item.user
   end
 
   # POST /items or /items.json
@@ -34,6 +35,7 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1 or /items/1.json
   def update
+    @user = @item.user
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: "Item was successfully updated." }
@@ -63,6 +65,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :price, :description)
+      params.require(:item).permit(:name, :price, :description, :availability)
     end
 end
