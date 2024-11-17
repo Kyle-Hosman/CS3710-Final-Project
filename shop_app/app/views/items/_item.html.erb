@@ -1,4 +1,7 @@
-<div id="<%= dom_id item %>">
+  <p>
+    <strong>Seller:</strong>
+    <%= link_to item.user.user_name, user_path(item.user) %>
+  </p>
   <p>
     <strong>Name:</strong>
     <%= item.name %>
@@ -22,11 +25,6 @@
   <p>
     <strong>Availability:</strong>
     <%= item.availability %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= item.user_id %>
   </p>
 
 </div>

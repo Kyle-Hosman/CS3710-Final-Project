@@ -12,7 +12,8 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    @user = User.find(params[:user_id])
+    @item = @user.items.build
   end
 
   # GET /items/1/edit
@@ -21,16 +22,13 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params)
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: "Item was successfully created." }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    @user = User.find(params[:user_id])
+    @item = @user.items.build(item_params)
+    @item.created_at = Time.current # Use current time for created_at
+    if @item.save
+      redirect_to inventory_path(@user), notice: 'Item was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -65,6 +63,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :description, :price, :created_at, :availability, :user_id)
+      params.require(:item).permit(:name, :price, :description)
     end
 end
