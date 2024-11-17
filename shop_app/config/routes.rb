@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'inventory/:user_id', to: 'inventory#show', as: 'inventory'
   resources :items
   resources :users do
-    resources :items, only: [:new, :create]
+    resources :items, only: [:new, :create, :edit, :update, :show, :destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
