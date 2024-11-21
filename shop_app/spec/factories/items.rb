@@ -1,6 +1,9 @@
 FactoryBot.define do
   factory :item do
-    name { Faker::Commerce.product_name }
-    price { Faker::Commerce.price }
+    association :user
+    name { "Test Item" }
+    description { "This is a test item." }
+    price { 9.99 }
+    availability { true }
   end
 end
