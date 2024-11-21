@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'inventory/:user_id', to: 'inventory#show', as: 'inventory'
   resources :items
   resources :users do
