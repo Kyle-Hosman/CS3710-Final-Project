@@ -1,37 +1,38 @@
-<%= form_with(model: [item.user, item]) do |form| %>
-  <% if item.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
-
-      <ul>
-        <% item.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div>
-    <%= form.label :availability, style: "display: block" %>
-    <%= form.check_box :availability %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+<% if @item.errors.any? %>
+  <div class="alert alert-danger">
+    <h4 class="alert-heading">Errors:</h4>
+    <ul>
+      <% @item.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
+
+<div class="container mt-4">
+  <%= form_with(model: @item, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_field :description, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :price, class: "form-label" %>
+      <%= form.text_field :price, class: "form-control" %>
+    </div>
+
+    <div class="form-check mb-3">
+      <%= form.label :availability, class: "form-check-label" %>
+      <%= form.check_box :availability, class: "form-check-input" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
