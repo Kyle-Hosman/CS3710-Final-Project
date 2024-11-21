@@ -19,7 +19,7 @@
     <div class="container">
       <a class="navbar-brand" href="/">
         <%= image_tag 'MSU.jpg', alt: 'Logo', style: 'height: 30px; width: auto;' %>
-        YourApp
+        Shop App
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,23 +40,22 @@
           </li>
         </ul>
       </div>
+      <!--Test Dropdown  -->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Cart
+      </button>
+      <ul class="dropdown-menu">
+         <li><a class="dropdown-item" href="#">View</a></li>
+       </ul>
+    </div>
     </div>
   </nav>
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-    <!--Test Dropdown  -->
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu">
-         <li><a class="dropdown-item" href="#">Action</a></li>
-         <li><a class="dropdown-item" href="#">Another action</a></li>
-         <li><a class="dropdown-item" href="#">Something else here</a></li>
-       </ul>
-    </div>
+    
 
     <%= yield %>
   </body>
