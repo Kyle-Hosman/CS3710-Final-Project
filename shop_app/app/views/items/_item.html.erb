@@ -1,30 +1,30 @@
-  <p>
-    <strong>Seller:</strong>
-    <%= link_to item.user.user_name, user_path(item.user) %>
-  </p>
-  <p>
-    <strong>Name:</strong>
-    <%= item.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= item.description %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= item.price %>
-  </p>
-
-  <p>
-    <strong>Created at:</strong>
-    <%= item.created_at %>
-  </p>
-
-  <p>
-    <strong>Availability:</strong>
-    <%= item.availability %>
-  </p>
-
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        <strong>Seller:</strong>
+        <%= link_to item.user.user_name, user_path(item.user), class: 'text-decoration-none' %>
+      </h5>
+      <p class="card-text">
+        <strong>Name:</strong>
+        <%= item.name %>
+      </p>
+      <p class="card-text">
+        <strong>Description:</strong>
+        <%= item.description %>
+      </p>
+      <p class="card-text">
+        <strong>Price:</strong>
+        <%= item.price %>
+      </p>
+      <p class="card-text">
+        <strong>Created at:</strong>
+        <%= item.created_at %>
+      </p>
+      <p class="card-text">
+        <strong>Availability:</strong>
+        <%= item.availability ? 'Available' : 'Not Available' %>
+      </p>
+    </div>
+  </div>
 </div>
