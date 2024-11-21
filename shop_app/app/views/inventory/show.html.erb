@@ -1,10 +1,25 @@
 <h1><%= @user.user_name %>'s Inventory</h1>
-<%= link_to 'Add Item', new_user_item_path(@user) %>
+
 <ul>
   <% if @items.any? %>
+  <div class="container mt-4">
+  <%= link_to 'Add Item', new_user_item_path(@user), class: 'btn btn-primary' %>
+  <div class="row">
     <% @items.each do |item| %>
-      <li><%= item.name %> - <%= item.price %></li>
+      <div class="col-md-4">
+        <div class="card mb-4">
+        <div class="card-body">
+        <h5 class="card-title"><%= "#{item.name}" %></h5>
+        <p class="card-text">Price: <%= item.price %></p>
+        <p class="card-text">availability: <%= item.availability %></p>
+        <%= link_to 'Show', item_path(item), class: 'btn btn-primary' %>
+        <%= link_to 'Delete', item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
+      </div>
+      </div>
     <% end %>
+  </div>
+</div>
   <% else %>
     <li>No items found</li>
   <% end %>
