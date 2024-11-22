@@ -24,4 +24,14 @@ RSpec.describe "Users", type: :system do
     click_on 'Sign up'
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end
+
+  it 'shows errors when sign up fails' do
+    visit new_user_registration_path
+    fill_in 'User name', with: 'testname123'
+    fill_in 'Email', with: 'invalid-email@test'
+    fill_in 'Password', with: 'password'
+    fill_in 'Password confirmation', with: 'differentpassword'
+    click_on 'Sign up'
+    expect(page).to have_content("Password confirmation doesn't match Password")
+  end
 end

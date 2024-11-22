@@ -24,12 +24,22 @@ RSpec.describe "Items", type: :system do
 
   it 'allows an item to be created' do
     visit new_user_item_path(user)
-    save_and_open_page
     fill_in 'Name', with: 'Test Item'
     fill_in 'Description', with: 'Test Description'
     fill_in 'Price', with: '9.99'
     check 'Availability'
     click_on 'Create Item'
     expect(page).to have_content('Item was successfully created.')
+  end
+
+  it 'shows errors when item creation fails' do
+    visit new_user_item_path(user)
+    fill_in 'Name', with: ''
+    fill_in 'Description', with: ''
+    fill_in 'Price', with: 'invalid'
+    click_on 'Create Item'
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Description can't be blank")
+    expect(page).to have_content('Price is not a number')
   end
 end
