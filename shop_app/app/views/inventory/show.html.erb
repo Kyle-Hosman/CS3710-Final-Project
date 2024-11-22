@@ -1,8 +1,11 @@
 <ul>
-  <% if @items.any? %>
+  
   <div class="container mt-4">
   <h1><%= @user.user_name %>'s Inventory</h1>
-  <%= link_to 'Add Item', new_user_item_path(@user), class: 'btn btn-primary' %>
+  <% if user_signed_in? && current_user.id == @user.id %>
+    <%= link_to 'Add Item', new_user_item_path(current_user), class: 'btn btn-primary' %>
+  <% end %>
+  <% if @items.any? %>
   <div class="row">
     <% @items.each do |item| %>
       <div class="col-md-4">
@@ -12,7 +15,7 @@
         <p class="card-text">Price: <%= item.price %></p>
         <p class="card-text">availability: <%= item.availability %></p>
         <%= link_to 'Show', item_path(item), class: 'btn btn-primary' %>
-        <%= link_to 'Add to Cart', item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info' %>
+        <%= link_to 'Add to Cart', item_path(item), class: 'btn btn-info' %>
       </div>
       </div>
       </div>

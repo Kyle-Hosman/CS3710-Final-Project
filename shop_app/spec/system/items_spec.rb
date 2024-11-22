@@ -12,7 +12,7 @@ RSpec.describe "Items", type: :system do
   end
 
   it 'allows an item to be created' do
-    visit new_item_path
+    visit new_user_item_path(user)
     fill_in 'Name', with: 'Test Item'
     fill_in 'Description', with: 'Test Description'
     fill_in 'Price', with: '9.99'

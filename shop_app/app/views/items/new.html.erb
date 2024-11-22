@@ -2,10 +2,14 @@
 
 <h1>New item</h1>
 
-<%= render "form", item: @item %>
+<%= form_with(model: [@user, @item], local: true) do |form| %>
+  <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
+  <%= form.hidden_field :user_id, value: @user.id %>
+  <%= render "form", item: @item %>
+<% end %>
 
 <br>
 
 <div>
-  <%= link_to "Back to items", items_path %>
+  <%= link_to "Back to Inventory", inventory_path %>
 </div>

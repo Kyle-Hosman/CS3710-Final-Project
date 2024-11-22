@@ -1,9 +1,13 @@
 class ItemsController < ApplicationController
+  protect_from_forgery except: [:create, :update, :destroy]
+  before_action :authenticate_user!
   before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :authorize_user!, only: %i[ edit update destroy ]
 
   # GET /items or /items.json
   def index
     @items = Item.all
+    @user = current_user
   end
 
   # GET /items/1 or /items/1.json
@@ -23,13 +27,13 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @item = @user.items.build(item_params)
     @item.created_at = Time.current # Use current time for created_at
     if @item.save
       redirect_to inventory_path(@user), notice: 'Item was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -61,6 +65,13 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
+    end
+
+    def authorize_user!
+      unless @item.user == current_user
+        flash[:alert] = "You are not authorized to perform this action."
+        redirect_to items_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
