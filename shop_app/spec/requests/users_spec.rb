@@ -24,12 +24,13 @@ RSpec.describe "Users", type: :request do
 
   describe "PUT /users/:id" do
     let(:user) { User.create!(valid_attributes) }
-    let(:new_attributes) { { user_name: "New User Name" } }
+    let(:new_attributes) { { user_name: "New User Name", email: "new@example.com", password: "newpassword", password_confirmation: "newpassword" } }
 
     it "updates the requested user" do
       put user_path(user), params: { user: new_attributes }
       user.reload
       expect(user.user_name).to eq("New User Name")
+      expect(user.email).to eq("new@example.com")
     end
   end
 

@@ -13,4 +13,9 @@ RSpec.describe Item, type: :model do
       expect(item).to_not be_valid
     end
 
+    it 'is not valid without a name' do
+      item.name = nil
+      expect(item).to_not be_valid
+    end
+  end
 end
