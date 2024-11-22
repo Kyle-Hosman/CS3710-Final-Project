@@ -8,16 +8,18 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Create some users
+require 'faker'
+
+# Create some users with Devise
 users = User.create!([
-  { user_name: "john_doe", email: "john@example.com" },
-  { user_name: "jane_doe", email: "jane@example.com" }
+  { user_name: Faker::Internet.username, email: Faker::Internet.email, password: 'password', password_confirmation: 'password' },
+  { user_name: Faker::Internet.username, email: Faker::Internet.email, password: 'password', password_confirmation: 'password' }
 ])
 
 # Create some items for each user
 items = Item.create!([
-  { name: "Item 1", description: "Description for item 1", price: 10.0, availability: true, user: users.first },
-  { name: "Item 2", description: "Description for item 2", price: 20.0, availability: false, user: users.first },
-  { name: "Item 3", description: "Description for item 3", price: 30.0, availability: true, user: users.last },
-  { name: "Item 4", description: "Description for item 4", price: 40.0, availability: false, user: users.last }
+  { name: Faker::Commerce.product_name, description: Faker::Lorem.sentence, price: Faker::Commerce.price, availability: [true, false].sample, user: users.first },
+  { name: Faker::Commerce.product_name, description: Faker::Lorem.sentence, price: Faker::Commerce.price, availability: [true, false].sample, user: users.first },
+  { name: Faker::Commerce.product_name, description: Faker::Lorem.sentence, price: Faker::Commerce.price, availability: [true, false].sample, user: users.last },
+  { name: Faker::Commerce.product_name, description: Faker::Lorem.sentence, price: Faker::Commerce.price, availability: [true, false].sample, user: users.last }
 ])

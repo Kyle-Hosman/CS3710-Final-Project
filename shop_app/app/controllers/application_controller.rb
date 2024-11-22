@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session
   #configure_permitted_parameters: method runs before each Devise controller action.
   before_action :configure_permitted_parameters, if: :devise_controller?
 

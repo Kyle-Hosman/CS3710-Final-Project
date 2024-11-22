@@ -1,10 +1,9 @@
 require 'rails_helper'
-RSpec.describe "Users", type: :request do
 
-  # Test user creation
+RSpec.describe "Users", type: :request do
+  let(:valid_attributes) { { user_name: "Test User", email: "test@example.com", password: "password", password_confirmation: "password" } }
+
   describe "POST /users" do
-    let(:valid_attributes) { { user_name: "Test User", email: "test@example.com" } }
-    
     it "creates a new User" do
       expect {
         post users_path, params: { user: valid_attributes }
@@ -12,9 +11,8 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  # Test user read
   describe "GET /users/:id" do
-    let(:user) { User.create!(user_name: "Test User", email: "test@example.com") }
+    let(:user) { User.create!(valid_attributes) }
 
     it "retrieves the requested user" do
       get user_path(user)
@@ -24,9 +22,8 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  # Test user update
   describe "PUT /users/:id" do
-    let(:user) { User.create!(user_name: "Test User", email: "test@example.com") }
+    let(:user) { User.create!(valid_attributes) }
     let(:new_attributes) { { user_name: "New User Name" } }
 
     it "updates the requested user" do
@@ -36,9 +33,8 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  # Test user deletion
   describe "DELETE /users/:id" do
-    let(:user) { User.create!(user_name: "Test User", email: "test@example.com") }
+    let(:user) { User.create!(valid_attributes) }
 
     it "destroys the requested user" do
       delete user_path(user)
@@ -46,5 +42,4 @@ RSpec.describe "Users", type: :request do
       expect(User.exists?(user.id)).to be_falsey
     end
   end
-
 end
