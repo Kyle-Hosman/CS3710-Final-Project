@@ -25,6 +25,13 @@
         <strong>Availability:</strong>
         <%= item.availability ? 'Available' : 'Not Available' %>
       </p>
+      <div class="d-flex justify-content-between">
+        <% if user_signed_in? && item.user == current_user %>
+          <%= link_to 'Edit', edit_user_item_path(current_user, item), class: 'btn btn-secondary', aria: { label: "Edit #{item.name}" } %>
+          <%= button_to 'Deleteee', @item, method: :delete, class: 'btn btn-danger', aria: { label: "Delete #{item.name}" } %>
+        <% end %>
+        <%= link_to 'Add to Cart', item_path(item), class: 'btn btn-success', aria: { label: "Add #{item.name} to cart" } %>
+      </div>
     </div>
   </div>
 </div>

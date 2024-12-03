@@ -11,7 +11,7 @@
 
 <div class="container mt-4">
   <%= form_with(model: @item, local: true, aria: { labelledby: 'form-heading' }) do |form| %>
-    <h1 id="form-heading">New Item</h1>
+    <h1 id="form-heading"></h1>
     <div class="mb-3">
       <%= form.label :name, class: "form-label" %>
       <%= form.text_field :name, class: "form-control", aria: { labelledby: 'form-heading' } %>
