@@ -1,9 +1,9 @@
 <div class="container mt-4">
-  <div class="card">
+  <div class="card" role="region" aria-labelledby="item-<%= item.id %>-details">
     <div class="card-body">
-      <h5 class="card-title">
+      <h5 class="card-title" id="item-<%= item.id %>-details">
         <strong>Seller:</strong>
-        <%= link_to item.user.user_name, user_path(item.user), class: 'text-decoration-none' %>
+        <%= link_to item.user.user_name, user_path(item.user), class: 'text-decoration-none', aria: { label: "View profile of #{item.user.user_name}" } %>
       </h5>
       <p class="card-text">
         <strong>Name:</strong>

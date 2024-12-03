@@ -2,10 +2,10 @@
   <div class="row">
   <div class="card mb-4">
   <h1>New User</h1>
-    <%= form_with(model: user) do |form| %>
+    <%= form_with(model: user, aria: { labelledby: 'new-user-heading' }) do |form| %>
       <% if user.errors.any? %>
-        <div style="color: red">
-          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <div style="color: red" aria-live="assertive">
+          <h2 id="new-user-heading"><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
           <ul>
             <% user.errors.each do |error| %>
@@ -17,12 +17,12 @@
 
       <div>
         <%= form.label :user_name, style: "display: block" %>
-        <%= form.text_field :user_name %>
+        <%= form.text_field :user_name, aria: { labelledby: 'new-user-heading' } %>
       </div>
 
       <div>
         <%= form.label :email, style: "display: block" %>
-        <%= form.text_field :email %>
+        <%= form.text_field :email, aria: { labelledby: 'new-user-heading' } %>
       </div>
 
       <div>

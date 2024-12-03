@@ -1,8 +1,8 @@
 <div class="container mt-4">
   <div class="row">
-  <div class="card mb-4">
+  <div class="card mb-4" role="region" aria-labelledby="user-<%= user.id %>-details">
     <div id="<%= dom_id user %>">
-      <p>
+      <p id="user-<%= user.id %>-details">
         <strong>User name:</strong>
         <%= user.user_name %>
       </p>
