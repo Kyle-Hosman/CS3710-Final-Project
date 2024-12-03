@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_21_231134) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_03_012033) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -31,6 +31,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_231134) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "provider"
+    t.string "uid"
   end
 
   add_foreign_key "items", "users"
