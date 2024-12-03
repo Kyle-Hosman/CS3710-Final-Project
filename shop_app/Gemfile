@@ -72,3 +72,6 @@ end
 # User authentication https://github.com/heartcombo/devise
 gem "devise"
 
+# Google Authentication with omniauth
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
