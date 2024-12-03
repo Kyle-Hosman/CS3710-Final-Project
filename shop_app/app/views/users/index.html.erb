@@ -16,16 +16,16 @@
 =end%>
 
 <div class="container mt-4">
- <h1>Users</h1>
-  <div class="row">
+ <h1 id="users-heading">Users</h1>
+  <div class="row" aria-labelledby="users-heading">
     <% @users.each do |user| %>
       <div class="col-md-4">
-        <div class="card mb-4">
+        <div class="card mb-4" role="region" aria-labelledby="user-<%= user.id %>-name">
         <div class="card-body">
-        <h5 class="card-title">
+        <h5 class="card-title" id="user-<%= user.id %>-name">
               <%= link_to user.user_name, user_path(user), class: 'text-decoration-none' %>
         </h5>
-        <%= link_to 'Inventory', inventory_path(user), class: 'btn btn-primary' %>
+        <%= link_to 'Inventory', inventory_path(user), class: 'btn btn-primary', aria: { label: "View inventory for #{user.user_name}" } %>
       </div>
       </div>
       </div>

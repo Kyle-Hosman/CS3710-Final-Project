@@ -3,20 +3,20 @@
 <% content_for :title, "Items" %>
 
 <div class="container mt-4">
- <h1>Recent Items</h1>
-  <div class="row">
+ <h1 id="recent-items-heading">Recent Items</h1>
+  <div class="row" aria-labelledby="recent-items-heading">
     <% @items.each do |item| %>
       <div class="col-md-4">
-        <div class="card mb-4">
+        <div class="card mb-4" role="region" aria-labelledby="item-<%= item.id %>-name">
         <div class="card-body">
-        <h5 class="card-title"><%= "#{item.name}" %></h5>
+        <h5 class="card-title" id="item-<%= item.id %>-name"><%= "#{item.name}" %></h5>
         <p class="card-text">Price: <%= item.price %></p>
-        <p class="card-text">availability: <%= item.availability %></p>
+        <p class="card-text">Availability: <%= item.availability %></p>
         <% if user_signed_in? && item.user == current_user %>
-          <%= link_to 'Edit', edit_user_item_path(current_user, item), class: 'btn btn-secondary' %>
-          <%= link_to 'Delete', user_item_path(current_user, item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Edit', edit_user_item_path(current_user, item), class: 'btn btn-secondary', aria: { label: "Edit #{item.name}" } %>
+          <%= link_to 'Delete', user_item_path(current_user, item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', aria: { label: "Delete #{item.name}" } %>
         <% end %>
-        <%= link_to 'Show', item_path(item), class: 'btn btn-primary' %>
+        <%= link_to 'Show', item_path(item), class: 'btn btn-primary', aria: { label: "Show details for #{item.name}" } %>
       </div>
       </div>
       </div>
