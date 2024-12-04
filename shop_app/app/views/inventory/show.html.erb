@@ -14,15 +14,18 @@
         <h5 class="card-title" id="item-<%= item.id %>-name"><%= "#{item.name}" %></h5>
         <p class="card-text">Price: <%= item.price %></p>
         <p class="card-text">availability: <%= item.availability %></p>
-        <%= link_to 'Show', item_path(item), class: 'btn btn-primary', aria: { label: "Show details for #{item.name}" } %>
-        <%= link_to 'Add to Cart', item_path(item), class: 'btn btn-info', aria: { label: "Add #{item.name} to cart" } %>
-      </div>
-      </div>
+        <div class="d-flex justify-content-between">
+        <%= link_to 'View', item_path(item), class: 'btn btn-primary', aria: { label: "View #{item.name}" } %>
+        <% if user_signed_in? && item.user == current_user %>
+          <%= link_to 'Edit', edit_user_item_path(current_user, item), class: 'btn btn-secondary', aria: { label: "Edit #{item.name}" } %>
+        <% end %>
+        </div>
+        </div>
       </div>
     <% end %>
   </div>
 </div>
-  <% else %>
-    <li>No items found</li>
-  <% end %>
+<% else %>
+  <li>No items found</li>
+<% end %>
 </ul>

@@ -1,18 +1,22 @@
 <div class="container mt-4">
-  <div class="row">
-  <div class="card mb-4" role="region" aria-labelledby="user-<%= user.id %>-details">
-    <div id="<%= dom_id user %>">
-      <p id="user-<%= user.id %>-details">
-        <strong>User name:</strong>
-        <%= user.user_name %>
-      </p>
-
-      <p>
-        <strong>Email:</strong>
-        <%= user.email %>
-      </p>
-
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mb-4" role="region" aria-labelledby="user-<%= user.id %>-details">
+        <div class="card-body" id="<%= dom_id user %>">
+          <h5 class="card-title" id="user-<%= user.id %>-details">
+            <strong>User name:</strong>
+            <%= user.user_name %>
+          </h5>
+          <p class="card-text">
+            <strong>Email:</strong>
+            <%= user.email %>
+          </p>
+          <div class="d-flex justify-content-between">
+            <%= link_to 'Inventory', inventory_path(@user), class: 'btn btn-warning' %>
+            <%= link_to 'Edit this user', edit_user_path(@user), class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
+  </div>
 </div>
