@@ -12,8 +12,10 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
 
   def self.from_google(u)
+    user_name = u[:email]
     create_with(uid: u[:uid], provider: 'google',
-                password: Devise.friendly_token[0, 20]).find_or_create_by!(email: u[:email])
+                password: Devise.friendly_token[0, 20],
+                user_name: user_name).find_or_create_by!(email: u[:email])
   end
 
   
